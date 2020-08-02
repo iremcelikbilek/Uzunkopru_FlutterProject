@@ -54,6 +54,9 @@ flutter:
     - assets/images/mainactivity_footer.png
     - assets/images/gameactivity_header.png
     - assets/images/about_header.png
+    - assets/images/howToPlay_header.PNG
+
+
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
