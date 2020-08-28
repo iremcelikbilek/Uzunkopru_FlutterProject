@@ -55,7 +55,15 @@ flutter:
     - assets/images/gameactivity_header.png
     - assets/images/about_header.png
     - assets/images/howToPlay_header.PNG
-
+    - assets/images/app_common_background4.jpg
+    - assets/images/how_to_play_activity_header.png
+    - assets/images/notification_bakcground.png
+    - assets/images/categoryactivity_item_thumb_1.png
+    - assets/images/categoryactivity_item_thumb_4.png
+    - assets/images/categoryactivity_item_lock.png
+    - assets/images/categoryactivity_item_thumb_3.png
+    - assets/images/categoryactivity_item_thumb_2.png
+    - assets/images/categoryactivity_item_thumb_5.png
 
 
 

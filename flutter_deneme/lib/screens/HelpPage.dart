@@ -4,7 +4,7 @@ class HelpPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: buildHelpPage(),
+      body: SafeArea(child: buildHelpPage()),
     );
   }
 
@@ -12,8 +12,7 @@ class HelpPage extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         image: const DecorationImage(
-          image: NetworkImage(
-              'https://www.desktopbackground.org/download/768x1280/2012/09/29/459970_old-paper-texture-mobile-wallpapers-8830_1080x1920_h.jpg'),
+          image: AssetImage("assets/images/app_common_background4.jpg"),
           fit: BoxFit.cover,
         ),
       ),
@@ -23,7 +22,7 @@ class HelpPage extends StatelessWidget {
             color: Colors.transparent,
             margin: EdgeInsets.only(right: 10, left: 10, top: 10),
             child: Expanded(
-                child: Image.asset("assets/images/howToPlay_header.png")),
+                child: Image.asset("assets/images/how_to_play_activity_header.png")),
           ),
           Expanded(
             flex: 8,
@@ -32,7 +31,7 @@ class HelpPage extends StatelessWidget {
                 Card(
                   margin: EdgeInsets.all(20),
                   elevation: 20,
-                  color: Colors.blueAccent,
+                  color: Colors.blueAccent.withAlpha(170),
                   child:
                       ListTile(
                         contentPadding: EdgeInsets.all(15),
@@ -52,7 +51,7 @@ class HelpPage extends StatelessWidget {
                 Card(
                   margin: EdgeInsets.all(20),
                   elevation: 20,
-                  color: Colors.redAccent,
+                  color: Colors.redAccent.withAlpha(170),
                   child:
                   ListTile(
                     contentPadding: EdgeInsets.all(15),
@@ -72,7 +71,7 @@ class HelpPage extends StatelessWidget {
                 Card(
                   margin: EdgeInsets.all(20),
                   elevation: 20,
-                  color: Colors.orangeAccent,
+                  color: Colors.orangeAccent.withAlpha(170),
                   child:
                   ListTile(
                     contentPadding: EdgeInsets.all(15),
@@ -92,7 +91,7 @@ class HelpPage extends StatelessWidget {
                 Card(
                   margin: EdgeInsets.all(20),
                   elevation: 20,
-                  color: Colors.purpleAccent,
+                  color: Colors.purpleAccent.withAlpha(170),
                   child:
                   ListTile(
                     contentPadding: EdgeInsets.all(15),
@@ -111,15 +110,16 @@ class HelpPage extends StatelessWidget {
                 Card(
                   margin: EdgeInsets.all(20),
                   elevation: 20,
-                  color: Colors.green,
+                  color: Colors.green.withAlpha(170),
                   child:
                   ListTile(
                     contentPadding: EdgeInsets.all(15),
                     dense: true,
-                    leading: CircleAvatar(
-                      backgroundColor: Colors.green.shade300,
-                      child: Text("5",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 30),),
-                    ),
+                    leading:  CircleAvatar(
+                        backgroundColor: Colors.green.shade300,
+                        child: Text("5",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 30),),
+                      ),
+
                     title: Text("Facebook'ta Paylaş",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 25),),
                     subtitle: Text("Profil ayarlarında Facebook hesabın ile bağlan! Böylece başarılarını ve "
                         "başarıların sonucu açılan bilgileri arkadaşların ile paylaşabilirsin. Arkadaşlarına Uzunköprü'yü "

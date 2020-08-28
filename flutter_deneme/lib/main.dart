@@ -11,6 +11,7 @@ import 'package:flutter_deneme/screens/ScorePage.dart';
 
 void main() {
   runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
     initialRoute: "/",
     routes: {
       "/": (context) => HomePage(),
