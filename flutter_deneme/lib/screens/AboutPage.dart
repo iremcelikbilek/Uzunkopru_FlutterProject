@@ -12,6 +12,12 @@ class AboutPage extends StatelessWidget {
 
 Widget buildAboutPage(BuildContext context) {
   return Container(
+    decoration: BoxDecoration(
+      image: DecorationImage(
+        image: AssetImage("assets/images/notification_bakcground.png"),
+        fit: BoxFit.cover,
+      ),
+    ),
     child: Column(
       children: <Widget>[
         Container(

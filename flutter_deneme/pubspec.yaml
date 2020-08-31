@@ -21,6 +21,7 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
+  percent_indicator: ^2.1.5
   flutter:
     sdk: flutter
 
@@ -64,6 +65,8 @@ flutter:
     - assets/images/categoryactivity_item_thumb_3.png
     - assets/images/categoryactivity_item_thumb_2.png
     - assets/images/categoryactivity_item_thumb_5.png
+    - assets/images/notification_header.png
+    - assets/images/notification_detail_header.png
 
 
 
