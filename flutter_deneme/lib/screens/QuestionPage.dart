@@ -10,7 +10,6 @@ import 'package:flutter_deneme/Utils/stage5.dart';
 import 'package:flutter_deneme/screens/InformationPage.dart';
 
 class QuestionPage extends StatefulWidget {
-
   int level;
   QuestionPage(this.level);
 
@@ -19,11 +18,10 @@ class QuestionPage extends StatefulWidget {
 }
 
 class _QuestionPageState extends State<QuestionPage> {
-
-  List<String> bringQuestion(){
+  List<String> bringQuestion() {
     int currentLevel = widget.level;
     List<String> data;
-    if(currentLevel == 1)
+    if (currentLevel == 1)
       data = Stage1.Questions_Stage1;
     else if (currentLevel == 2)
       data = Stage2.Questions_Stage2;
@@ -31,14 +29,14 @@ class _QuestionPageState extends State<QuestionPage> {
       data = Stage3.Questions_Stage3;
     else if (currentLevel == 4)
       data = Stage4.Questions_Stage4;
-    else if (currentLevel == 5)
-      data = Stage5.Questions_Stage5;
+    else if (currentLevel == 5) data = Stage5.Questions_Stage5;
     return data;
   }
-  List<String> bringA(){
+
+  List<String> bringA() {
     int currentLevel = widget.level;
     List<String> data;
-    if(currentLevel == 1)
+    if (currentLevel == 1)
       data = Stage1.Options_A1;
     else if (currentLevel == 2)
       data = Stage2.Options_A2;
@@ -46,14 +44,14 @@ class _QuestionPageState extends State<QuestionPage> {
       data = Stage3.Options_A3;
     else if (currentLevel == 4)
       data = Stage4.Options_A4;
-    else if (currentLevel == 5)
-      data = Stage5.Options_A5;
+    else if (currentLevel == 5) data = Stage5.Options_A5;
     return data;
   }
-  List<String> bringB(){
+
+  List<String> bringB() {
     int currentLevel = widget.level;
     List<String> data;
-    if(currentLevel == 1)
+    if (currentLevel == 1)
       data = Stage1.Options_B1;
     else if (currentLevel == 2)
       data = Stage2.Options_B2;
@@ -61,14 +59,14 @@ class _QuestionPageState extends State<QuestionPage> {
       data = Stage3.Options_B3;
     else if (currentLevel == 4)
       data = Stage4.Options_B4;
-    else if (currentLevel == 5)
-      data = Stage5.Options_B5;
+    else if (currentLevel == 5) data = Stage5.Options_B5;
     return data;
   }
-  List<String> bringC(){
+
+  List<String> bringC() {
     int currentLevel = widget.level;
     List<String> data;
-    if(currentLevel == 1)
+    if (currentLevel == 1)
       data = Stage1.Options_C1;
     else if (currentLevel == 2)
       data = Stage2.Options_C2;
@@ -76,14 +74,14 @@ class _QuestionPageState extends State<QuestionPage> {
       data = Stage3.Options_C3;
     else if (currentLevel == 4)
       data = Stage4.Options_C4;
-    else if (currentLevel == 5)
-      data = Stage5.Options_C5;
+    else if (currentLevel == 5) data = Stage5.Options_C5;
     return data;
   }
-  List<String> bringD(){
+
+  List<String> bringD() {
     int currentLevel = widget.level;
     List<String> data;
-    if(currentLevel == 1)
+    if (currentLevel == 1)
       data = Stage1.Options_D1;
     else if (currentLevel == 2)
       data = Stage2.Options_D2;
@@ -91,14 +89,14 @@ class _QuestionPageState extends State<QuestionPage> {
       data = Stage3.Options_D3;
     else if (currentLevel == 4)
       data = Stage4.Options_D4;
-    else if (currentLevel == 5)
-      data = Stage5.Options_D5;
+    else if (currentLevel == 5) data = Stage5.Options_D5;
     return data;
   }
-  List<String> bringCorrectAnswer(){
+
+  List<String> bringCorrectAnswer() {
     int currentLevel = widget.level;
     List<String> data;
-    if(currentLevel == 1)
+    if (currentLevel == 1)
       data = Stage1.Correct_Answer1;
     else if (currentLevel == 2)
       data = Stage2.Correct_Answer2;
@@ -106,8 +104,7 @@ class _QuestionPageState extends State<QuestionPage> {
       data = Stage3.Correct_Answer3;
     else if (currentLevel == 4)
       data = Stage4.Correct_Answer4;
-    else if (currentLevel == 5)
-      data = Stage5.Correct_Answer5;
+    else if (currentLevel == 5) data = Stage5.Correct_Answer5;
     return data;
   }
 
@@ -120,13 +117,13 @@ class _QuestionPageState extends State<QuestionPage> {
   int point = 0;
   int counter = 10;
   int currentQuestion = 1;
-  int timerLong ;
-  Timer _timer ;
+  int timerLong = 30;
+  Timer _timer;
   bool sureEkle = false;
   int totalCorrectAnswer = 0;
 
-  void useTimeJoker(){
-    if(timeJoker != 0){
+  void useTimeJoker() {
+    if (timeJoker != 0) {
       timeJoker--;
       sureEkle = true;
       //timerLong += 30;
@@ -135,40 +132,55 @@ class _QuestionPageState extends State<QuestionPage> {
 
   void startTimer() {
     int counter = 30;
-      if (_timer != null) {
-        _timer.cancel();
-      }
-      _timer =  Timer.periodic(Duration(seconds: 1), (timer) {
-        setState(() {
-          if(counter >= 0){
-            timerLong = counter;
-            counter--;
-            if(sureEkle == true){
-              timerLong += 30;
-            }
-          }else{
-            timer.cancel();
+    if (_timer != null) {
+      _timer.cancel();
+    }
+    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+      setState(() {
+        if (counter >= 0) {
+          timerLong = counter;
+          counter--;
+          if (sureEkle == true) {
+            timerLong += 30;
+            counter += 30;
+            sureEkle = false;
           }
-        });
+        } else {
+          timer.cancel();
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => InformationPage(
+                      totalQuestion - 1,
+                      earnedPoint,
+                      totalPoint,
+                      fiftyPercentJoker,
+                      timeJoker))).then((value) {
+            setState(() {});
+          });
+        }
       });
-
+    });
   }
-/*@override
+
+  @override
   void initState() {
     super.initState();
     startTimer();
-  }*/
+  }
 
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: (){
+      onWillPop: () {
         Navigator.pop(context,
-            [totalCorrectAnswer,totalPoint,fiftyPercentJoker,timeJoker]);
+            [totalCorrectAnswer, totalPoint, fiftyPercentJoker, timeJoker]);
         return Future.value(false);
       },
       child: Scaffold(
-        body: SafeArea(child: buildBody(context),),
+        body: SafeArea(
+          child: buildBody(context),
+        ),
       ),
     );
   }
@@ -195,16 +207,15 @@ class _QuestionPageState extends State<QuestionPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  buildQuestionPart(context,bringQuestion()[index]),
-                  buildButton(context,bringA()[index]),
-                  buildButton(context,bringB()[index]),
-                  buildButton(context,bringC()[index]),
-                  buildButton(context,bringD()[index]),
+                  buildQuestionPart(context, bringQuestion()[index]),
+                  buildButton(context, bringA()[index]),
+                  buildButton(context, bringB()[index]),
+                  buildButton(context, bringC()[index]),
+                  buildButton(context, bringD()[index]),
                 ],
               ),
             ),
           ),
-
         ],
       ),
     );
@@ -223,7 +234,7 @@ class _QuestionPageState extends State<QuestionPage> {
             ),
           ),
           Container(
-            constraints: BoxConstraints(minWidth: 30,minHeight: 30),
+            //constraints: BoxConstraints(minWidth: 30,minHeight: 30),
             decoration: BoxDecoration(
               shape: BoxShape.rectangle,
               border: Border.all(color: Colors.black26, width: 2),
@@ -234,9 +245,22 @@ class _QuestionPageState extends State<QuestionPage> {
               textAlign: TextAlign.center,
             ),
           ),
-          SizedBox(width: 50,height: 50,),
-          Container(child: Text("Uzunköprü",style: TextStyle(color: Colors.white, fontSize: 30,),)),
-          SizedBox(width: 50,height: 50,),
+          SizedBox(
+            width: 50,
+            height: 50,
+          ),
+          Container(
+              child: Text(
+            "Uzunköprü",
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 30,
+            ),
+          )),
+          SizedBox(
+            width: 50,
+            height: 50,
+          ),
           Container(
             child: Icon(
               Icons.timer,
@@ -246,10 +270,10 @@ class _QuestionPageState extends State<QuestionPage> {
           ),
           GestureDetector(
             onTap: () {
-             useTimeJoker();
+              useTimeJoker();
             },
             child: Container(
-              constraints: BoxConstraints(minWidth: 30,minHeight: 30),
+              constraints: BoxConstraints(minWidth: 30, minHeight: 30),
               decoration: BoxDecoration(
                 shape: BoxShape.rectangle,
                 border: Border.all(color: Colors.black26, width: 2),
@@ -261,14 +285,12 @@ class _QuestionPageState extends State<QuestionPage> {
               ),
             ),
           ),
-
-
         ],
       ),
     );
   }
 
-  Widget buildQuestionPart(BuildContext context,String data) {
+  Widget buildQuestionPart(BuildContext context, String data) {
     return Expanded(
       flex: 4,
       child: Container(
@@ -286,20 +308,27 @@ class _QuestionPageState extends State<QuestionPage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Container(
-                  child: Text("   $totalPoint \nPuan",style: TextStyle(color: Colors.white,fontSize: 20),),
+                  child: Text(
+                    "   $totalPoint \nPuan",
+                    style: TextStyle(color: Colors.white, fontSize: 20),
+                  ),
                 ),
                 CircleAvatar(
                   backgroundColor: Colors.white,
                   radius: 30,
-                  child: Text(timerLong.toString(),
-                    style: TextStyle(color: Colors.black,fontSize: 30),),
+                  child: Text(
+                    timerLong.toString(),
+                    style: TextStyle(color: Colors.black, fontSize: 30),
+                  ),
                 ),
                 Container(
-                  child: Text("$currentQuestion/10",style: TextStyle(color: Colors.white,fontSize: 20),),
+                  child: Text(
+                    "$currentQuestion/10",
+                    style: TextStyle(color: Colors.white, fontSize: 20),
+                  ),
                 ),
               ],
             ),
-
             Row(
               children: <Widget>[
                 Expanded(
@@ -308,7 +337,11 @@ class _QuestionPageState extends State<QuestionPage> {
                     padding: EdgeInsets.all(10),
                     margin: EdgeInsets.symmetric(vertical: 10),
                     child: Center(
-                      child: Text(data,style: TextStyle(color: Colors.white,fontSize: 20),textAlign: TextAlign.center,),
+                      child: Text(
+                        data,
+                        style: TextStyle(color: Colors.white, fontSize: 20),
+                        textAlign: TextAlign.center,
+                      ),
                     ),
                   ),
                 ),
@@ -320,12 +353,19 @@ class _QuestionPageState extends State<QuestionPage> {
     );
   }
 
-  Widget buildButton (BuildContext context,String data) {
+  Widget buildButton(BuildContext context, String data) {
+    Color backgroundColor;
+
+    if (data == bringCorrectAnswer()[index]) {
+      backgroundColor = Colors.green;
+    } else {
+      backgroundColor = Colors.red;
+    }
 
     return Expanded(
       flex: 1,
       child: Container(
-        margin: EdgeInsets.symmetric(vertical: 10,horizontal: 40),
+        margin: EdgeInsets.symmetric(vertical: 10, horizontal: 40),
         decoration: BoxDecoration(
           color: Colors.white.withAlpha(170),
           border: Border.all(color: Colors.blue.withAlpha(170), width: 2),
@@ -333,35 +373,45 @@ class _QuestionPageState extends State<QuestionPage> {
         ),
         child: FlatButton(
           materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-          //highlightColor: bringColor(isTrue),
-          onPressed: (){
+          highlightColor: backgroundColor,
+          onPressed: () {
             currentQuestion++;
             totalQuestion--;
-              if(data == bringCorrectAnswer()[index]){
-                debugPrint("Dogru cevap verdiniz");
-                earnedPoint += 10;
-                totalPoint += 10;
-                totalCorrectAnswer++;
-              }else{
-
-              }
+            if (data == bringCorrectAnswer()[index]) {
+              debugPrint("Dogru cevap verdiniz");
+              earnedPoint += 10;
+              totalPoint += 10;
+              totalCorrectAnswer++;
+            } else {}
             index++;
-              if(index == 10){
-                Navigator.pop(context,[totalCorrectAnswer,totalPoint,fiftyPercentJoker,timeJoker]);
-              }
+            if (index == 10) {
+              Navigator.pop(context, [
+                totalCorrectAnswer,
+                totalPoint,
+                fiftyPercentJoker,
+                timeJoker
+              ]);
+            }
 
-            Navigator.push(context, MaterialPageRoute(builder: (context) => InformationPage(totalQuestion,earnedPoint,totalPoint,fiftyPercentJoker,timeJoker))).then((value){
-              setState(() {
-
-              });
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => InformationPage(
+                        totalQuestion,
+                        earnedPoint,
+                        totalPoint,
+                        fiftyPercentJoker,
+                        timeJoker))).then((value) {
+              setState(() {});
             });
-
           },
-          child: Center(child: Text("$data",style: TextStyle(color: Colors.black,fontSize: 20),)),
+          child: Center(
+              child: Text(
+            "$data",
+            style: TextStyle(color: Colors.black, fontSize: 20),
+          )),
         ),
       ),
     );
   }
-
-
 }
