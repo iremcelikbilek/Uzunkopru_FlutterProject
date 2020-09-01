@@ -11,7 +11,19 @@ class _GamePageState extends State<GamePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(child: buildGamePage(context)),
+      body: Stack(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              image: const DecorationImage(
+                image: AssetImage("assets/images/app_common_background4.jpg"),
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          SafeArea(child: buildGamePage(context)),
+        ],
+      ),
     );
   }
 }
@@ -19,21 +31,13 @@ class _GamePageState extends State<GamePage> {
 Widget buildGamePage(BuildContext context) {
   return Container(
     padding: EdgeInsets.only(right: 5.0, left: 5.0),
-    decoration: BoxDecoration(
-      //color: const Color(0xff7c94b6),
-      image: const DecorationImage(
-        image: AssetImage("assets/images/app_common_background4.jpg"),
-        fit: BoxFit.cover,
-      ),
-    ),
     child: Column(
       children: <Widget>[
         Expanded(
           flex: 4,
           child: Container(
             margin: EdgeInsets.all(60.0),
-            child: Image.asset(
-                "assets/images/gameactivity_header.png"),
+            child: Image.asset("assets/images/gameactivity_header.png"),
           ),
         ),
         Expanded(
