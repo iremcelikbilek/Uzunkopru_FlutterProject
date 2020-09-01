@@ -110,6 +110,7 @@ class _QuestionPageState extends State<QuestionPage> {
       data = Stage5.Correct_Answer5;
     return data;
   }
+
   int totalPoint = 0;
   int earnedPoint = 0;
   int totalQuestion = 10;
@@ -122,7 +123,7 @@ class _QuestionPageState extends State<QuestionPage> {
   int timerLong ;
   Timer _timer ;
   bool sureEkle = false;
-  int totalCorrectAnswer = 7;
+  int totalCorrectAnswer = 0;
 
   void useTimeJoker(){
     if(timeJoker != 0){
@@ -157,7 +158,6 @@ class _QuestionPageState extends State<QuestionPage> {
     super.initState();
     startTimer();
   }*/
-
 
   @override
   Widget build(BuildContext context) {
@@ -286,7 +286,7 @@ class _QuestionPageState extends State<QuestionPage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Container(
-                  child: Text("   $point \nPuan",style: TextStyle(color: Colors.white,fontSize: 20),),
+                  child: Text("   $totalPoint \nPuan",style: TextStyle(color: Colors.white,fontSize: 20),),
                 ),
                 CircleAvatar(
                   backgroundColor: Colors.white,
@@ -321,7 +321,7 @@ class _QuestionPageState extends State<QuestionPage> {
   }
 
   Widget buildButton (BuildContext context,String data) {
-    bool isTrue;
+
     return Expanded(
       flex: 1,
       child: Container(
@@ -333,18 +333,24 @@ class _QuestionPageState extends State<QuestionPage> {
         ),
         child: FlatButton(
           materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-          highlightColor: (isTrue == true)? Colors.green : Colors.red,
+          //highlightColor: bringColor(isTrue),
           onPressed: (){
-            index++;
+            currentQuestion++;
             totalQuestion--;
               if(data == bringCorrectAnswer()[index]){
+                debugPrint("Dogru cevap verdiniz");
                 earnedPoint += 10;
-                isTrue = true;
+                totalPoint += 10;
+                totalCorrectAnswer++;
               }else{
-                isTrue = false;
+
+              }
+            index++;
+              if(index == 10){
+                Navigator.pop(context,[totalCorrectAnswer,totalPoint,fiftyPercentJoker,timeJoker]);
               }
 
-            Navigator.push(context, MaterialPageRoute(builder: (context) => InformationPage(totalQuestion,earnedPoint))).then((value){
+            Navigator.push(context, MaterialPageRoute(builder: (context) => InformationPage(totalQuestion,earnedPoint,totalPoint,fiftyPercentJoker,timeJoker))).then((value){
               setState(() {
 
               });

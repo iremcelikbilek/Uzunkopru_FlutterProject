@@ -1,12 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_deneme/screens/QuestionPage.dart';
 
 class InformationPage extends StatefulWidget {
 
   int totalQuestion;
   int earnedPoint;
-  InformationPage(this.totalQuestion,this.earnedPoint);
+  int totalPoint;
+  int fiftyPercentJoker;
+  int timeJoker;
+
+  InformationPage(this.totalQuestion,this.earnedPoint,this.totalPoint,this.fiftyPercentJoker,this.timeJoker);
 
   @override
   _InformationPageState createState() => _InformationPageState();
@@ -15,7 +18,6 @@ class InformationPage extends StatefulWidget {
 class _InformationPageState extends State<InformationPage> {
   int remainingQuestion = 0;
   int totalPoint = 0;
-
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +79,7 @@ class _InformationPageState extends State<InformationPage> {
             SizedBox(height: 20,),
             Container(child: Text("Kazanılan Puan: ${widget.earnedPoint}",style: TextStyle(color: Colors.white,fontSize: 20),textAlign: TextAlign.center,)),
             SizedBox(height: 20,),
-            Container(child: Text("Toplam Puan: $totalPoint",style: TextStyle(color: Colors.white,fontSize: 20),textAlign: TextAlign.center,)),
+            Container(child: Text("Toplam Puan: ${widget.totalPoint}",style: TextStyle(color: Colors.white,fontSize: 20),textAlign: TextAlign.center,)),
           ],
         ),
       ),
@@ -115,7 +117,7 @@ class _InformationPageState extends State<InformationPage> {
                           shape: BoxShape.rectangle,
                           border: Border.all(color: Colors.black26, width: 2),
                         ),
-                        child: Text("1",style: TextStyle(color: Colors.blue,fontSize: 20),textAlign: TextAlign.center,),
+                        child: Text("${widget.fiftyPercentJoker}",style: TextStyle(color: Colors.blue,fontSize: 20),textAlign: TextAlign.center,),
                       ),
                     ],
                   ),
@@ -132,7 +134,7 @@ class _InformationPageState extends State<InformationPage> {
                           shape: BoxShape.rectangle,
                           border: Border.all(color: Colors.black26, width: 2),
                         ),
-                        child: Text("1",style: TextStyle(color: Colors.blue,fontSize: 20),textAlign: TextAlign.center,),
+                        child: Text("${widget.timeJoker}",style: TextStyle(color: Colors.blue,fontSize: 20),textAlign: TextAlign.center,),
                       ),
                     ],
                   ),
