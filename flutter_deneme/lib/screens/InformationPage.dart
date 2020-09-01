@@ -2,14 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class InformationPage extends StatefulWidget {
-
   int totalQuestion;
   int earnedPoint;
   int totalPoint;
   int fiftyPercentJoker;
   int timeJoker;
 
-  InformationPage(this.totalQuestion,this.earnedPoint,this.totalPoint,this.fiftyPercentJoker,this.timeJoker);
+  InformationPage(this.totalQuestion, this.earnedPoint, this.totalPoint,
+      this.fiftyPercentJoker, this.timeJoker);
 
   @override
   _InformationPageState createState() => _InformationPageState();
@@ -22,23 +22,31 @@ class _InformationPageState extends State<InformationPage> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: (){
+      onWillPop: () {
         return Future.value(false);
       },
       child: Scaffold(
-        body: SafeArea(child: buildBody(context),),
+        body: Stack(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("assets/images/app_common_background4.jpg"),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+            SafeArea(
+              child: buildBody(context),
+            )
+          ],
+        ),
       ),
     );
   }
 
   Widget buildBody(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("assets/images/app_common_background4.jpg"),
-          fit: BoxFit.cover,
-        ),
-      ),
       child: Column(
         children: <Widget>[
           Card(
@@ -57,7 +65,9 @@ class _InformationPageState extends State<InformationPage> {
   Widget buildHeader(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10),
-      child: Center(child: Text("Uzunköprü",style: TextStyle(color: Colors.white,fontSize: 30))),
+      child: Center(
+          child: Text("Uzunköprü",
+              style: TextStyle(color: Colors.white, fontSize: 30))),
     );
   }
 
@@ -75,11 +85,30 @@ class _InformationPageState extends State<InformationPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Container(child: Text("Kalan Soru: ${widget.totalQuestion}",style: TextStyle(color: Colors.white,fontSize: 20),textAlign: TextAlign.center,)),
-            SizedBox(height: 20,),
-            Container(child: Text("Kazanılan Puan: ${widget.earnedPoint}",style: TextStyle(color: Colors.white,fontSize: 20),textAlign: TextAlign.center,)),
-            SizedBox(height: 20,),
-            Container(child: Text("Toplam Puan: ${widget.totalPoint}",style: TextStyle(color: Colors.white,fontSize: 20),textAlign: TextAlign.center,)),
+            Container(
+                child: Text(
+              "Kalan Soru: ${widget.totalQuestion}",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+              textAlign: TextAlign.center,
+            )),
+            SizedBox(
+              height: 20,
+            ),
+            Container(
+                child: Text(
+              "Kazanılan Puan: ${widget.earnedPoint}",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+              textAlign: TextAlign.center,
+            )),
+            SizedBox(
+              height: 20,
+            ),
+            Container(
+                child: Text(
+              "Toplam Puan: ${widget.totalPoint}",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+              textAlign: TextAlign.center,
+            )),
           ],
         ),
       ),
@@ -90,7 +119,7 @@ class _InformationPageState extends State<InformationPage> {
     return Expanded(
       flex: 2,
       child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 80,vertical: 10),
+        margin: EdgeInsets.symmetric(horizontal: 80, vertical: 10),
         decoration: BoxDecoration(
           color: Colors.blue.withAlpha(170),
           //border: Border.all(color: Colors.blue.withAlpha(170), width: 2),
@@ -100,7 +129,10 @@ class _InformationPageState extends State<InformationPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Container(
-              child: Text("Kalan Jokerler",style: TextStyle(color: Colors.white,fontSize: 20),),
+              child: Text(
+                "Kalan Jokerler",
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -109,15 +141,23 @@ class _InformationPageState extends State<InformationPage> {
                   margin: EdgeInsets.all(10),
                   child: Column(
                     children: <Widget>[
-                      Text("%",style: TextStyle(color: Colors.white,fontSize: 20),),
+                      Text(
+                        "%",
+                        style: TextStyle(color: Colors.white, fontSize: 20),
+                      ),
                       Container(
-                        constraints: BoxConstraints(minWidth: 30,minHeight: 30),
+                        constraints:
+                            BoxConstraints(minWidth: 30, minHeight: 30),
                         decoration: BoxDecoration(
                           color: Colors.white,
                           shape: BoxShape.rectangle,
                           border: Border.all(color: Colors.black26, width: 2),
                         ),
-                        child: Text("${widget.fiftyPercentJoker}",style: TextStyle(color: Colors.blue,fontSize: 20),textAlign: TextAlign.center,),
+                        child: Text(
+                          "${widget.fiftyPercentJoker}",
+                          style: TextStyle(color: Colors.blue, fontSize: 20),
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                     ],
                   ),
@@ -126,15 +166,24 @@ class _InformationPageState extends State<InformationPage> {
                   margin: EdgeInsets.all(10),
                   child: Column(
                     children: <Widget>[
-                      Icon(Icons.timer,color: Colors.white,size: 20,),
+                      Icon(
+                        Icons.timer,
+                        color: Colors.white,
+                        size: 20,
+                      ),
                       Container(
-                        constraints: BoxConstraints(minWidth: 30,minHeight: 30),
+                        constraints:
+                            BoxConstraints(minWidth: 30, minHeight: 30),
                         decoration: BoxDecoration(
                           color: Colors.white,
                           shape: BoxShape.rectangle,
                           border: Border.all(color: Colors.black26, width: 2),
                         ),
-                        child: Text("${widget.timeJoker}",style: TextStyle(color: Colors.blue,fontSize: 20),textAlign: TextAlign.center,),
+                        child: Text(
+                          "${widget.timeJoker}",
+                          style: TextStyle(color: Colors.blue, fontSize: 20),
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                     ],
                   ),
@@ -143,7 +192,6 @@ class _InformationPageState extends State<InformationPage> {
             ),
           ],
         ),
-
       ),
     );
   }
@@ -162,14 +210,21 @@ class _InformationPageState extends State<InformationPage> {
                 borderRadius: BorderRadius.circular(10),
               ),
               child: FlatButton(
-                onPressed: (){
+                onPressed: () {
                   Navigator.pushNamed(context, "/PlayGamePage");
                 },
                 materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                 child: Row(
                   children: <Widget>[
-                    Text("Çık ",style: TextStyle(color: Colors.blue,fontSize: 20),),
-                    Icon(Icons.clear,color: Colors.blue,size: 20,),
+                    Text(
+                      "Çık ",
+                      style: TextStyle(color: Colors.blue, fontSize: 20),
+                    ),
+                    Icon(
+                      Icons.clear,
+                      color: Colors.blue,
+                      size: 20,
+                    ),
                   ],
                 ),
               ),
@@ -184,18 +239,22 @@ class _InformationPageState extends State<InformationPage> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: FlatButton(
-                      onPressed: (){
+                      onPressed: () {
                         totalPoint += widget.earnedPoint;
                         Navigator.pop(context);
-                        setState(() {
-
-                        });
                       },
                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       child: Row(
                         children: <Widget>[
-                          Text("Sıradaki",style: TextStyle(color: Colors.blue,fontSize: 20),),
-                          Icon(Icons.navigate_next,size: 20,color: Colors.blue,),
+                          Text(
+                            "Sıradaki",
+                            style: TextStyle(color: Colors.blue, fontSize: 20),
+                          ),
+                          Icon(
+                            Icons.navigate_next,
+                            size: 20,
+                            color: Colors.blue,
+                          ),
                         ],
                       ),
                     ),
@@ -208,5 +267,4 @@ class _InformationPageState extends State<InformationPage> {
       ),
     );
   }
-
 }
