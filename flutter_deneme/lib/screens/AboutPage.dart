@@ -5,19 +5,25 @@ class AboutPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey.shade200,
-      body: SafeArea(child: buildAboutPage(context)),
+      body: Stack(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              image: const DecorationImage(
+                image: AssetImage("assets/images/app_common_background4.jpg"),
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          SafeArea(child: buildAboutPage(context)),
+        ],
+      ),
     );
   }
 }
 
 Widget buildAboutPage(BuildContext context) {
   return Container(
-    decoration: BoxDecoration(
-      image: DecorationImage(
-        image: AssetImage("assets/images/notification_bakcground.png"),
-        fit: BoxFit.cover,
-      ),
-    ),
     child: Column(
       children: <Widget>[
         Container(

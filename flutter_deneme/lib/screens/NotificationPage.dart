@@ -9,8 +9,18 @@ class NotificationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: buildBody(context),
+      body: Stack(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              image: const DecorationImage(
+                image: AssetImage("assets/images/app_common_background4.jpg"),
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          SafeArea(child: buildBody(context)),
+        ],
       ),
     );
   }
@@ -28,36 +38,42 @@ class NotificationPage extends StatelessWidget {
     String delegate2 = line1[index];
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 5),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       child: Card(
-          color: Colors.blueGrey.withAlpha(180),
-          elevation: 5,
-          child: ListTile(
-            onTap: () => Navigator.pushNamed(context, "/NotificationDetail/$index"),
-            dense: true,
-            leading: Icon(Icons.date_range),
-            title: Center(child: Text(date,style: TextStyle(color: Colors.white,fontSize: 18),)),
-            subtitle: Column(
-              children: <Widget>[
-                Text(delegate1, style: TextStyle(color: Colors.white,fontSize: 20,fontStyle: FontStyle.italic),textAlign: TextAlign.center,),
-                Text(delegate2,style: TextStyle(color: Colors.white,fontSize: 15)),
-              ],
-            ),
-            trailing: Icon(Icons.arrow_forward_ios),
+        color: Colors.blueGrey.withAlpha(180),
+        elevation: 5,
+        child: ListTile(
+          onTap: () =>
+              Navigator.pushNamed(context, "/NotificationDetail/$index"),
+          dense: true,
+          leading: Icon(Icons.date_range),
+          title: Center(
+              child: Text(
+            date,
+            style: TextStyle(color: Colors.white, fontSize: 18),
+          )),
+          subtitle: Column(
+            children: <Widget>[
+              Text(
+                delegate1,
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontStyle: FontStyle.italic),
+                textAlign: TextAlign.center,
+              ),
+              Text(delegate2,
+                  style: TextStyle(color: Colors.white, fontSize: 15)),
+            ],
           ),
+          trailing: Icon(Icons.arrow_forward_ios),
         ),
+      ),
     );
-
   }
 
   Widget buildBody(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("assets/images/notification_bakcground.png"),
-          fit: BoxFit.cover,
-        ),
-      ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[

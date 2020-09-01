@@ -26,18 +26,24 @@ class _PlayGamePageState extends State<PlayGamePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(child: buildBody(context)),
+      body: Stack(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              image: const DecorationImage(
+                image: AssetImage("assets/images/app_common_background4.jpg"),
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          SafeArea(child: buildBody(context)),
+        ],
+      ),
     );
   }
 
   Widget buildBody(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        image: const DecorationImage(
-          image: AssetImage("assets/images/app_common_background4.jpg"),
-          fit: BoxFit.cover,
-        ),
-      ),
       child: Column(
         //mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[

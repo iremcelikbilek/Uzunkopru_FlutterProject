@@ -5,18 +5,24 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(child: buildBody(context)),
+      body: Stack(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              image: const DecorationImage(
+                image: AssetImage("assets/images/app_common_background4.jpg"),
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          SafeArea(child: buildBody(context)),
+        ],
+      ),
     );
   }
 
   Widget buildBody(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        image: const DecorationImage(
-          image: AssetImage("assets/images/app_common_background4.jpg"),
-          fit: BoxFit.cover,
-        ),
-      ),
       padding: EdgeInsets.all(5.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -51,7 +57,8 @@ class HomePage extends StatelessWidget {
                 children: <Widget>[
                   Expanded(
                     child: GestureDetector(
-                      onTap: () => Navigator.pushNamed(context, "/NotificationPage"),
+                      onTap: () =>
+                          Navigator.pushNamed(context, "/NotificationPage"),
                       child: Container(
                         decoration: BoxDecoration(
                           border: Border.all(color: Colors.black26, width: 2),
@@ -74,7 +81,8 @@ class HomePage extends StatelessWidget {
                         ),
                         margin: EdgeInsets.all(5.0),
                         padding: EdgeInsets.only(right: 5.0, left: 5.0),
-                        child: Image.asset("assets/images/mainactivity_btnabout.png"),
+                        child: Image.asset(
+                            "assets/images/mainactivity_btnabout.png"),
                       ),
                     ),
                   ),
@@ -97,7 +105,10 @@ class HomePage extends StatelessWidget {
               ),
             ),
           ),
-          Divider(color: Colors.black12,thickness: 3,),
+          Divider(
+            color: Colors.black12,
+            thickness: 3,
+          ),
           Expanded(
             flex: 1,
             child: Container(
