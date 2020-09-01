@@ -10,12 +10,12 @@ class PlayGamePage extends StatefulWidget {
 }
 
 class _PlayGamePageState extends State<PlayGamePage> {
-  int totalCorrectAnswer1=0;
-  int totalCorrectAnswer2=0;
-  int totalCorrectAnswer3=0;
-  int totalCorrectAnswer4=0;
-  int totalCorrectAnswer5=0;
-  int totalPoint = 0 ;
+  int totalCorrectAnswer1 = 0;
+  int totalCorrectAnswer2 = 0;
+  int totalCorrectAnswer3 = 0;
+  int totalCorrectAnswer4 = 0;
+  int totalCorrectAnswer5 = 0;
+  int totalPoint = 0;
   int fiftyPercentJoker = 1;
   int timeJoker = 1;
   bool stage1complete = false;
@@ -31,7 +31,6 @@ class _PlayGamePageState extends State<PlayGamePage> {
   }
 
   Widget buildBody(BuildContext context) {
-
     return Container(
       decoration: BoxDecoration(
         image: const DecorationImage(
@@ -48,7 +47,6 @@ class _PlayGamePageState extends State<PlayGamePage> {
             color: Colors.white.withAlpha(170),
             child: buildHeader(context),
           ),
-
           Expanded(
             child: ListView(
               children: <Widget>[
@@ -71,7 +69,8 @@ class _PlayGamePageState extends State<PlayGamePage> {
                             ),
                             Text(
                               "Uzunköprü",
-                              style: TextStyle(color: Colors.white, fontSize: 20),
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 20),
                             ),
                           ],
                         ),
@@ -82,7 +81,8 @@ class _PlayGamePageState extends State<PlayGamePage> {
                           children: <Widget>[
                             Text(
                               "Seviye 1",
-                              style: TextStyle(color: Colors.white, fontSize: 20),
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 20),
                             ),
                             SizedBox(
                               width: 10,
@@ -96,7 +96,7 @@ class _PlayGamePageState extends State<PlayGamePage> {
                                 progressColor: Colors.lightBlueAccent,
                                 percent: double.parse("0.$totalCorrectAnswer1"),
                                 center: Text(
-                                  "%${totalCorrectAnswer1*10}",
+                                  "%${totalCorrectAnswer1 * 10}",
                                   style: new TextStyle(fontSize: 12.0),
                                 ),
                               ),
@@ -106,9 +106,13 @@ class _PlayGamePageState extends State<PlayGamePage> {
                               height: 10,
                             ),
                             RaisedButton(
-                              onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => QuestionPage(1))).then((value){
+                              onPressed: () => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          QuestionPage(1))).then((value) {
                                 totalCorrectAnswer1 = value[0];
-                                if(totalCorrectAnswer1>=7){
+                                if (totalCorrectAnswer1 >= 7) {
                                   stage1complete = true;
                                 }
                                 setState(() {
@@ -146,62 +150,73 @@ class _PlayGamePageState extends State<PlayGamePage> {
                             ),
                             Text(
                               "Tarihi Eserler",
-                              style: TextStyle(color: Colors.white, fontSize: 20),
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 20),
                             ),
                           ],
                         ),
                       ),
-                      (stage1complete == true)?
-                      Container(
-                        padding: EdgeInsets.all(20),
-                        child: Column(
-                          children: <Widget>[
-                            Text(
-                              "Seviye 2",
-                              style: TextStyle(color: Colors.white, fontSize: 20),
-                            ),
-                            SizedBox(
-                              width: 10,
-                              height: 10,
-                            ),
-                            Container(
-                              child: LinearPercentIndicator(
-                                width: 150.0,
-                                lineHeight: 14,
-                                backgroundColor: Colors.red.shade50,
-                                progressColor: Colors.redAccent.shade100,
-                                percent: double.parse("0.$totalCorrectAnswer2"),
-                                center: Text(
-                                  "%${totalCorrectAnswer2*10}",
-                                  style: new TextStyle(fontSize: 12.0),
-                                ),
+                      (stage1complete == true)
+                          ? Container(
+                              padding: EdgeInsets.all(20),
+                              child: Column(
+                                children: <Widget>[
+                                  Text(
+                                    "Seviye 2",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 20),
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                    height: 10,
+                                  ),
+                                  Container(
+                                    child: LinearPercentIndicator(
+                                      width: 150.0,
+                                      lineHeight: 14,
+                                      backgroundColor: Colors.red.shade50,
+                                      progressColor: Colors.redAccent.shade100,
+                                      percent: double.parse(
+                                          "0.$totalCorrectAnswer2"),
+                                      center: Text(
+                                        "%${totalCorrectAnswer2 * 10}",
+                                        style: new TextStyle(fontSize: 12.0),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                    height: 10,
+                                  ),
+                                  RaisedButton(
+                                    onPressed: () => Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                QuestionPage(2))).then((value) {
+                                      totalCorrectAnswer2 = value[0];
+                                      if (totalCorrectAnswer2 >= 7) {
+                                        stage2complete = true;
+                                      }
+                                      setState(() {
+                                        totalPoint = value[1];
+                                        fiftyPercentJoker = value[2];
+                                        timeJoker = value[3];
+                                      });
+                                    }),
+                                    color: Colors.red.shade100,
+                                    child: Text("Yarış"),
+                                  )
+                                ],
                               ),
-                            ),
-                            SizedBox(
-                              width: 10,
-                              height: 10,
-                            ),
-                            RaisedButton(
-                              onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => QuestionPage(2))).then((value){
-                                totalCorrectAnswer2 = value[0];
-                                if(totalCorrectAnswer2>=7){
-                                  stage2complete = true;
-                                }
-                                setState(() {
-                                  totalPoint = value[1];
-                                  fiftyPercentJoker = value[2];
-                                  timeJoker = value[3];
-                                });
-                              }),
-                              color: Colors.red.shade100,
-                              child: Text("Yarış"),
                             )
-                          ],
-                        ),
-                      ):
-                      Container(
-                          padding: EdgeInsets.only(right: 80),
-                          child: Image.asset("assets/images/categoryactivity_item_lock.png",width: 50,height: 50,)),
+                          : Container(
+                              padding: EdgeInsets.only(right: 80),
+                              child: Image.asset(
+                                "assets/images/categoryactivity_item_lock.png",
+                                width: 50,
+                                height: 50,
+                              )),
                     ],
                   ),
                 ),
@@ -225,62 +240,74 @@ class _PlayGamePageState extends State<PlayGamePage> {
                             ),
                             Text(
                               "Önemli Yerler",
-                              style: TextStyle(color: Colors.white, fontSize: 20),
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 20),
                             ),
                           ],
                         ),
                       ),
-                      (stage2complete == true && stage1complete == true)?
-                      Container(
-                        padding: EdgeInsets.all(20),
-                        child: Column(
-                          children: <Widget>[
-                            Text(
-                              "Seviye 3",
-                              style: TextStyle(color: Colors.white, fontSize: 20),
-                            ),
-                            SizedBox(
-                              width: 10,
-                              height: 10,
-                            ),
-                            Container(
-                              child: LinearPercentIndicator(
-                                width: 150.0,
-                                lineHeight: 14,
-                                backgroundColor: Colors.orange.shade50,
-                                progressColor: Colors.orangeAccent.shade100,
-                                percent: double.parse("0.$totalCorrectAnswer3"),
-                                center: Text(
-                                  "%${totalCorrectAnswer3*10}",
-                                  style: new TextStyle(fontSize: 12.0),
-                                ),
+                      (stage2complete == true && stage1complete == true)
+                          ? Container(
+                              padding: EdgeInsets.all(20),
+                              child: Column(
+                                children: <Widget>[
+                                  Text(
+                                    "Seviye 3",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 20),
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                    height: 10,
+                                  ),
+                                  Container(
+                                    child: LinearPercentIndicator(
+                                      width: 150.0,
+                                      lineHeight: 14,
+                                      backgroundColor: Colors.orange.shade50,
+                                      progressColor:
+                                          Colors.orangeAccent.shade100,
+                                      percent: double.parse(
+                                          "0.$totalCorrectAnswer3"),
+                                      center: Text(
+                                        "%${totalCorrectAnswer3 * 10}",
+                                        style: new TextStyle(fontSize: 12.0),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                    height: 10,
+                                  ),
+                                  RaisedButton(
+                                    onPressed: () => Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                QuestionPage(3))).then((value) {
+                                      totalCorrectAnswer3 = value[0];
+                                      if (totalCorrectAnswer3 >= 7) {
+                                        stage3complete = true;
+                                      }
+                                      setState(() {
+                                        totalPoint = value[1];
+                                        fiftyPercentJoker = value[2];
+                                        timeJoker = value[3];
+                                      });
+                                    }),
+                                    color: Colors.orange.shade100,
+                                    child: Text("Yarış"),
+                                  )
+                                ],
                               ),
-                            ),
-                            SizedBox(
-                              width: 10,
-                              height: 10,
-                            ),
-                            RaisedButton(
-                              onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => QuestionPage(3))).then((value){
-                                totalCorrectAnswer3 = value[0];
-                                if(totalCorrectAnswer3>=7){
-                                  stage3complete = true;
-                                }
-                                setState(() {
-                                  totalPoint = value[1];
-                                  fiftyPercentJoker = value[2];
-                                  timeJoker = value[3];
-                                });
-                              }),
-                              color: Colors.orange.shade100,
-                              child: Text("Yarış"),
                             )
-                          ],
-                        ),
-                      ):
-                      Container(
-                          padding: EdgeInsets.only(right: 80),
-                          child: Image.asset("assets/images/categoryactivity_item_lock.png",width: 50,height: 50,)),
+                          : Container(
+                              padding: EdgeInsets.only(right: 80),
+                              child: Image.asset(
+                                "assets/images/categoryactivity_item_lock.png",
+                                width: 50,
+                                height: 50,
+                              )),
                     ],
                   ),
                 ),
@@ -305,62 +332,76 @@ class _PlayGamePageState extends State<PlayGamePage> {
                             ),
                             Text(
                               "Şehrimiz",
-                              style: TextStyle(color: Colors.white, fontSize: 20),
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 20),
                             ),
                           ],
                         ),
                       ),
-                      (stage1complete == true && stage2complete == true && stage3complete == true)?
-                      Container(
-                        padding: EdgeInsets.all(20),
-                        child: Column(
-                          children: <Widget>[
-                            Text(
-                              "Seviye 4",
-                              style: TextStyle(color: Colors.white, fontSize: 20),
-                            ),
-                            SizedBox(
-                              width: 10,
-                              height: 10,
-                            ),
-                            Container(
-                              child: LinearPercentIndicator(
-                                width: 150.0,
-                                lineHeight: 14,
-                                backgroundColor: Colors.purple.shade50,
-                                progressColor: Colors.purpleAccent.shade100,
-                                percent: double.parse("0.$totalCorrectAnswer4"),
-                                center: Text(
-                                  "%${totalCorrectAnswer4*10}",
-                                  style: new TextStyle(fontSize: 12.0),
-                                ),
+                      (stage1complete == true &&
+                              stage2complete == true &&
+                              stage3complete == true)
+                          ? Container(
+                              padding: EdgeInsets.all(20),
+                              child: Column(
+                                children: <Widget>[
+                                  Text(
+                                    "Seviye 4",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 20),
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                    height: 10,
+                                  ),
+                                  Container(
+                                    child: LinearPercentIndicator(
+                                      width: 150.0,
+                                      lineHeight: 14,
+                                      backgroundColor: Colors.purple.shade50,
+                                      progressColor:
+                                          Colors.purpleAccent.shade100,
+                                      percent: double.parse(
+                                          "0.$totalCorrectAnswer4"),
+                                      center: Text(
+                                        "%${totalCorrectAnswer4 * 10}",
+                                        style: new TextStyle(fontSize: 12.0),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                    height: 10,
+                                  ),
+                                  RaisedButton(
+                                    onPressed: () => Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                QuestionPage(4))).then((value) {
+                                      totalCorrectAnswer4 = value[0];
+                                      if (totalCorrectAnswer4 >= 7) {
+                                        stage4complete = true;
+                                      }
+                                      setState(() {
+                                        totalPoint = value[1];
+                                        fiftyPercentJoker = value[2];
+                                        timeJoker = value[3];
+                                      });
+                                    }),
+                                    color: Colors.purple.shade100,
+                                    child: Text("Yarış"),
+                                  )
+                                ],
                               ),
-                            ),
-                            SizedBox(
-                              width: 10,
-                              height: 10,
-                            ),
-                            RaisedButton(
-                              onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => QuestionPage(4))).then((value){
-                                totalCorrectAnswer4 = value[0];
-                                if(totalCorrectAnswer4>=7){
-                                  stage4complete = true;
-                                }
-                                setState(() {
-                                  totalPoint = value[1];
-                                  fiftyPercentJoker = value[2];
-                                  timeJoker = value[3];
-                                });
-                              }),
-                              color: Colors.purple.shade100,
-                              child: Text("Yarış"),
                             )
-                          ],
-                        ),
-                      ):
-                      Container(
-                          padding: EdgeInsets.only(right: 80),
-                          child: Image.asset("assets/images/categoryactivity_item_lock.png",width: 50,height: 50,)),
+                          : Container(
+                              padding: EdgeInsets.only(right: 80),
+                              child: Image.asset(
+                                "assets/images/categoryactivity_item_lock.png",
+                                width: 50,
+                                height: 50,
+                              )),
                     ],
                   ),
                 ),
@@ -384,71 +425,82 @@ class _PlayGamePageState extends State<PlayGamePage> {
                             ),
                             Text(
                               "Şehir Tarihi",
-                              style: TextStyle(color: Colors.white, fontSize: 20),
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 20),
                             ),
                           ],
                         ),
                       ),
-                      (stage1complete == true && stage2complete == true && stage3complete == true && stage4complete == true)?
-                      Container(
-                        padding: EdgeInsets.all(20),
-                        child: Column(
-                          children: <Widget>[
-                            Text(
-                              "Seviye 5",
-                              style: TextStyle(color: Colors.white, fontSize: 20),
-                            ),
-                            SizedBox(
-                              width: 10,
-                              height: 10,
-                            ),
-                            Container(
-                              width: 170,
-                              height: 20,
-                              child: LinearPercentIndicator(
-                                width: 150.0,
-                                lineHeight: 14,
-                                backgroundColor: Colors.green.shade50,
-                                progressColor: Colors.greenAccent.shade200,
-                                percent: double.parse("0.$totalCorrectAnswer5"),
-                                center: Text(
-                                  "%${totalCorrectAnswer5*10}",
-                                  style: new TextStyle(fontSize: 12.0),
-                                ),
+                      (stage1complete == true &&
+                              stage2complete == true &&
+                              stage3complete == true &&
+                              stage4complete == true)
+                          ? Container(
+                              padding: EdgeInsets.all(20),
+                              child: Column(
+                                children: <Widget>[
+                                  Text(
+                                    "Seviye 5",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 20),
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                    height: 10,
+                                  ),
+                                  Container(
+                                    width: 170,
+                                    height: 20,
+                                    child: LinearPercentIndicator(
+                                      width: 150.0,
+                                      lineHeight: 14,
+                                      backgroundColor: Colors.green.shade50,
+                                      progressColor:
+                                          Colors.greenAccent.shade200,
+                                      percent: double.parse(
+                                          "0.$totalCorrectAnswer5"),
+                                      center: Text(
+                                        "%${totalCorrectAnswer5 * 10}",
+                                        style: new TextStyle(fontSize: 12.0),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                    height: 10,
+                                  ),
+                                  RaisedButton(
+                                    onPressed: () => Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                QuestionPage(5))).then((value) {
+                                      totalCorrectAnswer5 = value[0];
+                                      setState(() {
+                                        totalPoint = value[1];
+                                        fiftyPercentJoker = value[2];
+                                        timeJoker = value[3];
+                                      });
+                                    }),
+                                    color: Colors.green.shade100,
+                                    child: Text("Yarış"),
+                                  )
+                                ],
                               ),
-                            ),
-                            SizedBox(
-                              width: 10,
-                              height: 10,
-                            ),
-                            RaisedButton(
-                              onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => QuestionPage(5))).then((value){
-                                totalCorrectAnswer5 = value[0];
-                                setState(() {
-                                  totalPoint = value[1];
-                                  fiftyPercentJoker = value[2];
-                                  timeJoker = value[3];
-                                });
-                              }),
-                              color: Colors.green.shade100,
-                              child: Text("Yarış"),
                             )
-                          ],
-                        ),
-                      ):
-                      Container(
-                          padding: EdgeInsets.only(right: 80),
-                          child: Image.asset("assets/images/categoryactivity_item_lock.png",width: 50,height: 50,)),
+                          : Container(
+                              padding: EdgeInsets.only(right: 80),
+                              child: Image.asset(
+                                "assets/images/categoryactivity_item_lock.png",
+                                width: 50,
+                                height: 50,
+                              )),
                     ],
                   ),
                 ),
-
               ],
-
             ),
           ),
-
-
         ],
       ),
     );
@@ -460,7 +512,6 @@ class _PlayGamePageState extends State<PlayGamePage> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-
           Container(
             child: Text(
               "Puan:",
@@ -473,10 +524,7 @@ class _PlayGamePageState extends State<PlayGamePage> {
               style: TextStyle(color: Colors.orangeAccent, fontSize: 20),
             ),
           ),
-          SizedBox(
-            width: 50,
-            height: 50,
-          ),
+          Spacer(),
           Container(
             child: Text(
               "Seviyeler",
@@ -484,18 +532,17 @@ class _PlayGamePageState extends State<PlayGamePage> {
                   color: Colors.red, fontSize: 30, fontStyle: FontStyle.italic),
             ),
           ),
-          SizedBox(
-            width: 40,
-            height: 40,
-          ),
+          Spacer(),
           Container(
+            margin: EdgeInsets.only(right: 5),
             child: Text(
               "%",
               style: TextStyle(color: Colors.red, fontSize: 20),
             ),
           ),
           Container(
-            constraints: BoxConstraints(minWidth: 20,minHeight: 20),
+            margin: EdgeInsets.only(right: 10),
+            constraints: BoxConstraints(minWidth: 20, minHeight: 20),
             decoration: BoxDecoration(
               shape: BoxShape.rectangle,
               border: Border.all(color: Colors.black26, width: 2),
@@ -506,11 +553,8 @@ class _PlayGamePageState extends State<PlayGamePage> {
               style: TextStyle(color: Colors.orangeAccent, fontSize: 20),
             ),
           ),
-          SizedBox(
-            width: 10,
-            height: 10,
-          ),
           Container(
+            margin: EdgeInsets.only(right: 5),
             child: Icon(
               Icons.timer,
               color: Colors.red,
@@ -518,7 +562,7 @@ class _PlayGamePageState extends State<PlayGamePage> {
             ),
           ),
           Container(
-            constraints: BoxConstraints(minWidth: 20,minHeight: 20),
+            constraints: BoxConstraints(minWidth: 20, minHeight: 20),
             decoration: BoxDecoration(
               shape: BoxShape.rectangle,
               border: Border.all(color: Colors.black26, width: 2),
@@ -529,10 +573,8 @@ class _PlayGamePageState extends State<PlayGamePage> {
               style: TextStyle(color: Colors.orangeAccent, fontSize: 20),
             ),
           ),
-
         ],
       ),
     );
   }
 }
-
