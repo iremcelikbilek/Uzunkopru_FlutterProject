@@ -178,8 +178,20 @@ class _QuestionPageState extends State<QuestionPage> {
         return Future.value(false);
       },
       child: Scaffold(
-        body: SafeArea(
-          child: buildBody(context),
+        body: Stack(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("assets/images/app_common_background4.jpg"),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+            SafeArea(
+              child: buildBody(context),
+            )
+          ],
         ),
       ),
     );
@@ -187,12 +199,6 @@ class _QuestionPageState extends State<QuestionPage> {
 
   Widget buildBody(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("assets/images/app_common_background4.jpg"),
-          fit: BoxFit.cover,
-        ),
-      ),
       child: Column(
         children: <Widget>[
           Card(
