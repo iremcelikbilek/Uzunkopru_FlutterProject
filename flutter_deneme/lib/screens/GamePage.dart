@@ -56,7 +56,7 @@ Widget buildGamePage(BuildContext context) {
                     child: FlatButton(
                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       highlightColor: Colors.redAccent,
-                      child: Text("Play"),
+                      child: Text("Oyna"),
                       onPressed: () =>
                           Navigator.pushNamed(context, "/PlayGamePage"),
                     ),
@@ -85,7 +85,7 @@ Widget buildGamePage(BuildContext context) {
                     child: FlatButton(
                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       highlightColor: Colors.orangeAccent,
-                      child: Text("Profile"),
+                      child: Text("Profil"),
                       onPressed: () =>
                           Navigator.pushNamed(context, "/ProfilePage"),
                     ),
@@ -115,7 +115,7 @@ Widget buildGamePage(BuildContext context) {
                     child: FlatButton(
                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       highlightColor: Colors.green,
-                      child: Text("Help"),
+                      child: Text("Yardım"),
                       onPressed: () =>
                           Navigator.pushNamed(context, "/HelpPage"),
                     ),

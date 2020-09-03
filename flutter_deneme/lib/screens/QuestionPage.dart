@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_deneme/Utils/stage1.dart';
@@ -128,6 +129,8 @@ class _QuestionPageState extends State<QuestionPage> {
       //timerLong += 30;
     }
   }
+
+
 
   void startTimer(bool startAgain) {
     int counter = 30;
@@ -284,16 +287,19 @@ class _QuestionPageState extends State<QuestionPage> {
               style: TextStyle(color: Colors.white, fontSize: 20),
             ),
           ),
-          Container(
-            //constraints: BoxConstraints(minWidth: 30,minHeight: 30),
-            decoration: BoxDecoration(
-              shape: BoxShape.rectangle,
-              border: Border.all(color: Colors.black26, width: 2),
-            ),
-            child: Text(
-              fiftyPercentJoker.toString(),
-              style: TextStyle(color: Colors.orangeAccent, fontSize: 20),
-              textAlign: TextAlign.center,
+          GestureDetector(
+            onTap: (){},
+            child: Container(
+              constraints: BoxConstraints(minWidth: 30,minHeight: 30),
+              decoration: BoxDecoration(
+                shape: BoxShape.rectangle,
+                border: Border.all(color: Colors.black26, width: 2),
+              ),
+              child: Text(
+                fiftyPercentJoker.toString(),
+                style: TextStyle(color: Colors.orangeAccent, fontSize: 20),
+                textAlign: TextAlign.center,
+              ),
             ),
           ),
           SizedBox(
@@ -435,6 +441,7 @@ class _QuestionPageState extends State<QuestionPage> {
               totalCorrectAnswer++;
             } else {}
             index++;
+
             if (index == 10) {
               Navigator.pop(context, [
                 totalCorrectAnswer,

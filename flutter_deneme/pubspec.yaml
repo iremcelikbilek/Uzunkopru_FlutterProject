@@ -67,6 +67,8 @@ flutter:
     - assets/images/categoryactivity_item_thumb_5.png
     - assets/images/notification_header.png
     - assets/images/notification_detail_header.png
+    - assets/images/profil_icon.png
+    - assets/images/profileactivity_facebook_login.png
 
 
 
