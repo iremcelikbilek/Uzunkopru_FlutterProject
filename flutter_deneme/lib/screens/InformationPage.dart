@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class InformationPage extends StatefulWidget {
@@ -241,7 +240,7 @@ class _InformationPageState extends State<InformationPage> {
                     child: FlatButton(
                       onPressed: () {
                         totalPoint += widget.earnedPoint;
-                        Navigator.pop(context);
+                        Navigator.pop(context,true);
                       },
                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       child: Row(

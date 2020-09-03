@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_deneme/Utils/stage1.dart';
 import 'package:flutter_deneme/Utils/stage2.dart';
@@ -130,44 +129,90 @@ class _QuestionPageState extends State<QuestionPage> {
     }
   }
 
-  void startTimer() {
+  void startTimer(bool startAgain) {
     int counter = 30;
     if (_timer != null) {
       _timer.cancel();
     }
-    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
-      setState(() {
-        if (counter >= 0) {
-          timerLong = counter;
-          counter--;
-          if (sureEkle == true) {
-            timerLong += 30;
-            counter += 30;
-            sureEkle = false;
+
+    if(startAgain == true){
+      timerLong = 0;
+       _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+        setState(() {
+          if (counter >= 0) {
+            timerLong = counter;
+            counter--;
+            if (sureEkle == true) {
+              timerLong += 30;
+              counter += 30;
+              sureEkle = false;
+            }
+          } else {
+            timer.cancel();
+            totalQuestion--;
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => InformationPage(
+                        totalQuestion,
+                        earnedPoint,
+                        totalPoint,
+                        fiftyPercentJoker,
+                        timeJoker))).then((value) {
+              setState(() {
+                startTimer(true);
+                index++;
+                currentQuestion++;
+              });
+            });
           }
-        } else {
-          timer.cancel();
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => InformationPage(
-                      totalQuestion - 1,
-                      earnedPoint,
-                      totalPoint,
-                      fiftyPercentJoker,
-                      timeJoker))).then((value) {
-            setState(() {});
-          });
-        }
+        });
       });
-    });
+    }else{
+      _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+        setState(() {
+          if (counter >= 0) {
+            timerLong = counter;
+            counter--;
+            if (sureEkle == true) {
+              timerLong += 30;
+              counter += 30;
+              sureEkle = false;
+            }
+          } else {
+            timer.cancel();
+            totalQuestion--;
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => InformationPage(
+                        totalQuestion,
+                        earnedPoint,
+                        totalPoint,
+                        fiftyPercentJoker,
+                        timeJoker))).then((value) {
+              setState(() {
+                index++;
+                currentQuestion++;
+
+              });
+            });
+          }
+        });
+      });
+    }
+
+
+
   }
+
 
   @override
   void initState() {
     super.initState();
-    startTimer();
+      startTimer(false);
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -408,7 +453,9 @@ class _QuestionPageState extends State<QuestionPage> {
                         totalPoint,
                         fiftyPercentJoker,
                         timeJoker))).then((value) {
-              setState(() {});
+              setState(() {
+                startTimer(value);
+              });
             });
           },
           child: Center(
